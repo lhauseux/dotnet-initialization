@@ -1,4 +1,4 @@
-name: Publish Contracts
+name: Publish
 
 on: workflow_dispatch
 
