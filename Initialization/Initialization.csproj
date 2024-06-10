@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+
+        <RootNamespace>LH.Initialization</RootNamespace>
+        <Version>1.0.0</Version>
+        <PackageId>lhauseux.initialization</PackageId>
+        <Author>Loïc Hauseux</Author>
+        <PackageDescription>Initialization package for .NET</PackageDescription>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <RepositoryUrl>https://github.com/lhauseux/dotnet-initialization</RepositoryUrl>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="docs/README.md" Pack="true" PackagePath="/" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="lhauseux.results" Version="*" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="*" />
+    </ItemGroup>
+
+</Project>
