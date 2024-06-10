@@ -34,15 +34,20 @@ public class DependencyInjectionTests
         var services = new ServiceCollection();
         services.AddInitializables(typeof(FakeInitializable), typeof(FakeInitializable), typeof(FakeInitializable));
 
-        var initializables = services.BuildServiceProvider().GetRequiredService<IEnumerable<IInitializable>>();
+        var initializables = services.BuildServiceProvider().GetRequiredService<IEnumerable<IInitializable>>()
+            .Cast<FakeInitializable>()
+            .ToList();
 
         Assert.NotNull(initializables);
+
+        initializables[0].CurrentCount = 0;
+        initializables[1].CurrentCount = 1;
+        initializables[2].CurrentCount = 2;
 
         var currentCount = 0;
         foreach (var initializable in initializables)
         {
-            var fakeInitializable = initializable as FakeInitializable;
-            Assert.Equal(currentCount, fakeInitializable?.CurrentCount);
+            Assert.Equal(currentCount, initializable.CurrentCount);
             currentCount++;
         }
     }

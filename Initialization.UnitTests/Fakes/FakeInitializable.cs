@@ -4,18 +4,20 @@ namespace LH.Initialization.UnitTests.Fakes
 {
     public class FakeInitializable : IInitializable
     {
-        public static int InitializeCallCount { get; private set; } = 0;
 
-        public FakeInitializable()
-        {
-            CurrentCount = InitializeCallCount++;
-        }
-
-        public int CurrentCount { get; }
+        public Result Result { get; set; } = Result.Success();
+        public bool ThrowException { get; set; } = false;
+        public int CurrentCount { get; set; }
+        public bool IsInitializedCalled { get; private set; } = false;
 
         public Task<Result> Initialize()
         {
-            return Task.FromResult(Result.Success());
+            IsInitializedCalled = true;
+            if (ThrowException)
+            {
+                throw new Exception();
+            }
+            return Task.FromResult(Result);
         }
     }
 }
